@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Spring Framework Quantlance</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+
+    <h2>Product Details</h2>
+    
+    <div>
+        <form class="form-horizontal" th:object="${form}" th:action="@{/product/} + ${form.action}" method="post">
+			<div th:if="${form.action=='update'}">
+				<input type="hidden" th:value="${form.id}" th:field="*{id}" />
+	            <input type="hidden" th:value="${form.version}" th:field="*{version}"/>
+			</div>				
+			<input type="hidden" th:value="${form.action}" th:field="*{action}" />
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Product Id:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="productId" id="productId" th:field="*{productId}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Description:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="description" id="description" th:field="*{description}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Price:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="price" id="price" th:field="*{price}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Image Url:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="imageUrl" id="imageUrl"  th:field="*{imageUrl}"/>
+                </div>
+            </div>
+            
+          <div class="errors"
+	           th:if="${#fields.hasErrors('all')}" th:errors="*{all}">
+          </div>  
+            
+            <div class="row">
+                <button type="submit" class="btn btn-default">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
