@@ -1,1 +1,2 @@
-# springboot-with-security
+How to run:
+mvn spring-boot:run
